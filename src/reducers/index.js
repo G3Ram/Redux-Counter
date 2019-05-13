@@ -1,8 +1,13 @@
-import { INCREMENT, DECREMENT } from '../actions';
+import { INCREMENT, DECREMENT } from "../actions";
 
 const initialState = {
-  count: 0
-}
+  count: 3
+};
+
+const counter = (state = initialState, action) => {
+  console.log("counter reducer running " + action);
+  return state;
+};
 
 // Our reducer that handles our two action cases:
 // increment and decrement. It receives the state
