@@ -14,25 +14,18 @@ class Counter extends Component {
     // increments after waiting for one second
   };
 
-  increment = () => {
-    console.log("increment clicked");
-  };
-
-  decrement = () => {
-    console.log("decrement clicked");
-  };
-
   render() {
     // Fill in the two button onClick methods
     // Upon clicking these buttons, the count
     // should decrement or increment accordingly
+    console.log("value of count in the state is " + this.props.count);
     return (
       <div className="container">
         <div className="counter">
           <h1>Clicked: {this.props.count} times</h1>
           <div className="display-btn">
-            <button onClick={() => this.increment}>+</button>
-            <button onClick={() => this.decrement}>-</button>
+            <button onClick={() => this.props.increment()}>+</button>
+            <button onClick={() => this.props.decrement()}>-</button>
           </div>
           {/* Uncomment these button tags if you got
                 around to implementing the extra credit functions */}
@@ -55,21 +48,25 @@ class Counter extends Component {
 // redux application, though, it would receive only the relevant
 // parts it needs from the state object.
 const mapStateToProps = state => {
+  console.log("value of count in state in mapstatetoprops is " + state.count);
   return {
     count: state.count
   };
 };
 
+// const mapDispatchToProps = dispatch => {
+//   return {};
+// };
 // The connect function is called in order to make this component aware
 // of the rest of the redux architecture. Without this, this component
 // is only a dumb React component. We pass in all of the functions that
 // are reliant on Redux, along with the component itself, so that Redux
 // makes itself known to this component.
 
-// export default connect(
-//   mapStateToProps,
-//   { increment, decrement }
-// )(Counter);
-export default connect(mapStateToProps)(Counter);
+export default connect(
+  mapStateToProps,
+  { increment, decrement }
+)(Counter);
+// export default connect(mapStateToProps)(Counter);
 
 // export default Counter;
