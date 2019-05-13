@@ -23,6 +23,7 @@ export default (state = initialState, action) => {
       console.log("IN DECREMENT ------------>" + state.count);
       return Object.assign({}, state, { count: state.count - 1 });
     default:
+      console.log("calling default");
       return state;
   }
 };
