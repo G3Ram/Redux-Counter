@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { increment, decrement } from "../actions";
+import "../index.css";
 
 class Counter extends Component {
   incrementIfOdd = () => {
@@ -17,26 +18,32 @@ class Counter extends Component {
     console.log("increment clicked");
   };
 
+  decrement = () => {
+    console.log("decrement clicked");
+  };
+
   render() {
     // Fill in the two button onClick methods
     // Upon clicking these buttons, the count
     // should decrement or increment accordingly
     return (
-      <p>
-        Clicked: {this.props.count} times
-        <button onClick={() => this.increment}>+</button>
-        {/* <button onClick={() => ()}}>
-                    -
-                </button> */}
-        {/* Uncomment these button tags if you got
+      <div className="container">
+        <div className="counter">
+          <h1>Clicked: {this.props.count} times</h1>
+          <div className="display-btn">
+            <button onClick={() => this.increment}>+</button>
+            <button onClick={() => this.decrement}>-</button>
+          </div>
+          {/* Uncomment these button tags if you got
                 around to implementing the extra credit functions */}
-        {/* <button onClick={this.incrementIfOdd}>
+          {/* <button onClick={this.incrementIfOdd}>
                     Increment if odd
                 </button>
                 <button onClick={this.incrementAsync}>
                     Increment async
                 </button>  */}
-      </p>
+        </div>
+      </div>
     );
   }
 }
@@ -47,11 +54,11 @@ class Counter extends Component {
 // this component receives the whole state. In a more complex
 // redux application, though, it would receive only the relevant
 // parts it needs from the state object.
-// const mapStateToProps = state => {
-//   return {
-//     count: state.count
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    count: state.count
+  };
+};
 
 // The connect function is called in order to make this component aware
 // of the rest of the redux architecture. Without this, this component
@@ -63,5 +70,6 @@ class Counter extends Component {
 //   mapStateToProps,
 //   { increment, decrement }
 // )(Counter);
+export default connect(mapStateToProps)(Counter);
 
-export default Counter;
+// export default Counter;
